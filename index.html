@@ -2485,12 +2485,40 @@
     if (contactForm) {
       contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
+
+        var name = document.getElementById('cf-name').value.trim();
+        var email = document.getElementById('cf-email').value.trim();
+        var whatsapp = document.getElementById('cf-whatsapp').value.trim();
+        var type = document.getElementById('cf-type').value;
+        var message = document.getElementById('cf-message').value.trim();
+
+        if (!name || !email || !message) {
+          alert('Please fill in Name, Email, and Project Brief.');
+          return;
+        }
+
+        var waMsg = '--- New Portfolio Inquiry ---\n\n'
+          + '*Name:* ' + name + '\n'
+          + '*Email:* ' + email + '\n'
+          + (whatsapp ? '*WhatsApp:* ' + whatsapp + '\n' : '')
+          + (type ? '*Project Type:* ' + type + '\n' : '')
+          + '\n*Message:*\n' + message;
+
+        var waUrl = 'https://api.whatsapp.com/send?phone=919341111171&text=' + encodeURIComponent(waMsg);
+
         var submitBtn = contactForm.querySelector('.form-submit');
-        submitBtn.textContent = 'Message Sent ✓';
+        submitBtn.textContent = 'Opening WhatsApp...';
         submitBtn.style.background = '#1a2a00';
         submitBtn.style.color = 'var(--acid)';
         submitBtn.style.border = '1px solid var(--acid)';
         submitBtn.disabled = true;
+
+        window.open(waUrl, '_blank');
+
+        setTimeout(function() {
+          submitBtn.textContent = 'Message Sent ✓';
+        }, 800);
+
         setTimeout(function() {
           submitBtn.textContent = 'Send Message  ↗';
           submitBtn.style.background = '';

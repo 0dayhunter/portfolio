@@ -2497,36 +2497,59 @@
           return;
         }
 
-        var waMsg = '--- New Portfolio Inquiry ---\n\n'
-          + '*Name:* ' + name + '\n'
-          + '*Email:* ' + email + '\n'
-          + (whatsapp ? '*WhatsApp:* ' + whatsapp + '\n' : '')
-          + (type ? '*Project Type:* ' + type + '\n' : '')
-          + '\n*Message:*\n' + message;
-
-        var waUrl = 'https://api.whatsapp.com/send?phone=919341111171&text=' + encodeURIComponent(waMsg);
-
         var submitBtn = contactForm.querySelector('.form-submit');
-        submitBtn.textContent = 'Opening WhatsApp...';
+        submitBtn.textContent = 'Sending...';
         submitBtn.style.background = '#1a2a00';
         submitBtn.style.color = 'var(--acid)';
         submitBtn.style.border = '1px solid var(--acid)';
         submitBtn.disabled = true;
 
-        window.open(waUrl, '_blank');
+        var tgMsg = '🔔 *New Portfolio Inquiry*\n\n'
+          + '👤 *Name:* ' + name + '\n'
+          + '📧 *Email:* ' + email + '\n'
+          + (whatsapp ? '📱 *WhatsApp:* ' + whatsapp + '\n' : '')
+          + (type ? '📂 *Project Type:* ' + type + '\n' : '')
+          + '\n💬 *Message:*\n' + message
+          + '\n\n⏰ _Sent from portfolio at ' + new Date().toLocaleString() + '_';
 
-        setTimeout(function() {
-          submitBtn.textContent = 'Message Sent ✓';
-        }, 800);
-
-        setTimeout(function() {
-          submitBtn.textContent = 'Send Message  ↗';
-          submitBtn.style.background = '';
-          submitBtn.style.color = '';
-          submitBtn.style.border = '';
-          submitBtn.disabled = false;
-          contactForm.reset();
-        }, 4000);
+        fetch('https://api.telegram.org/bot8651492348:AAG3tbbNxDdiqHyEKTLAoTfBeDR1GXPT3nE/sendMessage', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            chat_id: 1362033045,
+            text: tgMsg,
+            parse_mode: 'Markdown'
+          })
+        })
+        .then(function(res) { return res.json(); })
+        .then(function(data) {
+          if (data.ok) {
+            submitBtn.textContent = 'Message Sent ✓';
+            setTimeout(function() {
+              submitBtn.textContent = 'Send Message  ↗';
+              submitBtn.style.background = '';
+              submitBtn.style.color = '';
+              submitBtn.style.border = '';
+              submitBtn.disabled = false;
+              contactForm.reset();
+            }, 4000);
+          } else {
+            throw new Error('Telegram API error');
+          }
+        })
+        .catch(function() {
+          submitBtn.textContent = 'Failed — Try Again';
+          submitBtn.style.background = '#2a0000';
+          submitBtn.style.color = 'var(--red)';
+          submitBtn.style.border = '1px solid var(--red)';
+          setTimeout(function() {
+            submitBtn.textContent = 'Send Message  ↗';
+            submitBtn.style.background = '';
+            submitBtn.style.color = '';
+            submitBtn.style.border = '';
+            submitBtn.disabled = false;
+          }, 3000);
+        });
       });
     }
 

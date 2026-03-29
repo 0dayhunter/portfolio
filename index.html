@@ -1403,38 +1403,167 @@
     /* ============================================================
        RESPONSIVE
     ============================================================ */
+    /* ── TABLET LANDSCAPE / SMALL DESKTOP (1024px) ── */
     @media (max-width: 1024px) {
       .skills-grid { grid-template-columns: repeat(2, 1fr); }
       .certs-grid  { grid-template-columns: repeat(2, 1fr); }
       .about-grid  { gap: 3rem; }
       .contact-grid { gap: 3rem; }
       .hero-socials { display: none; }
+      .hero-scroll-hint { display: none; }
     }
 
+    /* ── TABLET PORTRAIT / iPad (768px) ── */
     @media (max-width: 768px) {
       .nav-links, .nav-cta { display: none; }
       .nav-hamburger { display: flex; }
 
-      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-      .skills-grid { grid-template-columns: 1fr; }
-      .certs-grid { grid-template-columns: 1fr; }
-      .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+      section { padding: 5rem 0; }
 
-      .hero-stats { flex-direction: column; gap: 1.5rem; border: none; padding-top: 0; }
-      .hero-stat { border: none; padding: 0; }
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .skills-grid { grid-template-columns: repeat(2, 1fr); }
+      .certs-grid { grid-template-columns: repeat(2, 1fr); }
+      .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+
+      .hero-stats {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+        border: none;
+        padding-top: 2rem;
+      }
+      .hero-stat {
+        border: none;
+        border-right: none;
+        padding: 0;
+        text-align: center;
+      }
+      .hero-stat:last-child { padding-left: 0; }
+
+      .hero-actions { gap: 1rem; flex-wrap: wrap; }
+      .hero-eyebrow { flex-wrap: wrap; font-size: 0.6rem; }
+      .hero-tagline { font-size: 1rem; }
 
       .op-card { grid-template-columns: 1fr; gap: 0.5rem; }
       .op-right { display: none; }
+      .op-card:hover { padding-left: 1rem; }
 
-      .about-achievements { grid-template-columns: 1fr; }
-      .hero-actions { gap: 1rem; }
+      .about-achievements { grid-template-columns: 1fr 1fr; }
+
+      .contact-link-value { font-size: 0.75rem; }
+
+      .profile-photo-wrap img { aspect-ratio: 16 / 10; }
     }
 
+    /* ── MOBILE LARGE / Android / iPhone Plus (480px) ── */
     @media (max-width: 480px) {
-      .container { padding: 0 1.25rem; }
-      .hero-name { font-size: clamp(2.8rem, 15vw, 4rem); }
-      .contact-form { padding: 1.5rem; }
-      .op-card { padding: 2rem 0; }
+      .container { padding: 0 1rem; }
+
+      section { padding: 3.5rem 0; }
+
+      .hero-name { font-size: clamp(2.5rem, 14vw, 3.5rem); }
+      .hero-eyebrow { font-size: 0.55rem; gap: 0.5rem; }
+      .hero-eyebrow .line { width: 20px; }
+      .hero-tagline { font-size: 0.9rem; margin-bottom: 2rem; }
+      .hero-title-row { margin: 1.5rem 0 1.5rem; }
+
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.75rem;
+      }
+      .btn-primary, .btn-secondary {
+        justify-content: center;
+        padding: 0.9rem 1.5rem;
+        font-size: 0.7rem;
+        width: 100%;
+      }
+
+      .hero-stats {
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        margin-top: 2.5rem;
+      }
+      .hero-stat-val { font-size: 1.3rem; }
+      .hero-stat-label { font-size: 0.55rem; }
+
+      .skills-grid { grid-template-columns: 1fr; }
+      .certs-grid { grid-template-columns: 1fr; }
+      .about-achievements { grid-template-columns: 1fr; }
+
+      h2.section-title { font-size: clamp(2rem, 8vw, 3rem); }
+      .section-label { font-size: 0.6rem; }
+
+      .op-card { padding: 1.5rem 0; }
+      .op-card[style] { padding-left: 0.5rem !important; padding-right: 0.5rem !important; }
+      .op-role { font-size: 1.1rem; }
+      .op-desc { font-size: 0.85rem; }
+      .op-bullets li { font-size: 0.8rem; }
+      .op-tags { gap: 0.4rem; }
+      .op-badge { font-size: 0.55rem; padding: 0.25rem 0.5rem; }
+
+      .contact-form { padding: 1.25rem; }
+      .contact-heading { font-size: clamp(2rem, 8vw, 3rem); }
+      .contact-link-item { padding: 0.8rem 1rem; }
+      .contact-link-icon { font-size: 0.7rem; min-width: 28px; height: 28px; }
+      .contact-link-label { font-size: 0.55rem; }
+      .contact-link-value { font-size: 0.7rem; }
+      .form-input { font-size: 0.85rem; padding: 0.8rem 1rem; }
+      .form-label { font-size: 0.6rem; }
+      .form-submit { padding: 0.9rem 1.5rem; font-size: 0.7rem; }
+
+      .skill-card { padding: 1.5rem; }
+      .skill-card-title { font-size: 1.1rem; }
+      .skill-tag { font-size: 0.55rem; }
+
+      .cert-card { padding: 1.5rem; }
+      .cert-badge { width: 45px; height: 45px; font-size: 0.55rem; }
+      .cert-name { font-size: 0.85rem; }
+
+      .profile-photo-wrap img { aspect-ratio: 4 / 3; }
+
+      .terminal-block { font-size: 0.75rem; }
+      .terminal-body { padding: 1rem; }
+      .terminal-body div { font-size: 0.65rem; }
+
+      .about-text p { font-size: 0.9rem; }
+
+      .marquee-wrapper { height: 28px; }
+      .marquee-item { font-size: 0.55rem; }
+
+      /* Hide custom cursor on touch devices */
+      #cursor-dot, #cursor-ring { display: none; }
+      body { cursor: auto; }
+    }
+
+    /* ── MOBILE SMALL / iPhone SE / older Android (360px) ── */
+    @media (max-width: 360px) {
+      .container { padding: 0 0.75rem; }
+      .hero-name { font-size: 2.2rem; }
+      .hero-eyebrow .tag { display: none; }
+      .hero-stats { grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+      .hero-stat-val { font-size: 1.1rem; }
+      h2.section-title { font-size: 1.8rem; }
+      .op-role { font-size: 1rem; }
+      .contact-heading { font-size: 1.8rem; }
+    }
+
+    /* ── TOUCH DEVICE DETECTION ── */
+    @media (hover: none) and (pointer: coarse) {
+      #cursor-dot, #cursor-ring { display: none !important; }
+      body { cursor: auto !important; }
+      .glitch:hover::before, .glitch:hover::after { opacity: 0; }
+      .op-card:hover { padding-left: 0; background: var(--bg); border-left-color: transparent; }
+      .op-card[style]:hover { padding-left: 0.5rem !important; }
+      .btn-primary:hover { transform: none; box-shadow: none; }
+      .btn-secondary:hover { transform: none; }
+      .skill-card:hover { background: var(--bg2); }
+      .contact-link-item:hover { padding-left: 1.5rem; }
+    }
+
+    /* ── LARGE DESKTOP (1440px+) ── */
+    @media (min-width: 1440px) {
+      .container { max-width: 1400px; }
     }
 
     /* ============================================================

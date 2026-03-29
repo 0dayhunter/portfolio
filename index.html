@@ -705,6 +705,69 @@
       font-size: 0.9em;
     }
 
+    .profile-photo-wrap {
+      position: relative;
+      margin-bottom: 1.5rem;
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    .profile-photo-wrap img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      object-position: center top;
+      filter: grayscale(0.2) contrast(1.05);
+      transition: filter 0.4s ease, transform 0.6s var(--ease);
+    }
+
+    .profile-photo-wrap:hover img {
+      filter: grayscale(0) contrast(1.1);
+      transform: scale(1.03);
+    }
+
+    .profile-photo-wrap::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        transparent 50%,
+        rgba(10, 10, 10, 0.7) 100%
+      );
+      pointer-events: none;
+    }
+
+    .profile-photo-label {
+      position: absolute;
+      bottom: 1rem;
+      left: 1rem;
+      z-index: 2;
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--acid);
+      background: rgba(10, 10, 10, 0.7);
+      padding: 0.3rem 0.7rem;
+      border: 1px solid var(--acid);
+    }
+
+    .profile-photo-scanline {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 0, 0, 0.06) 2px,
+        rgba(0, 0, 0, 0.06) 4px
+      );
+      pointer-events: none;
+    }
+
     .terminal-block {
       background: var(--bg2);
       border: 1px solid var(--border);
@@ -1720,6 +1783,11 @@
         </div>
 
         <div class="reveal-left d2">
+          <div class="profile-photo-wrap">
+            <img src="profile.png" alt="Karthik Raj S A — Senior Web3 & Full Stack Developer" loading="lazy" />
+            <div class="profile-photo-scanline" aria-hidden="true"></div>
+            <span class="profile-photo-label">Karthik Raj S A</span>
+          </div>
           <div class="terminal-block" role="complementary" aria-label="Profile terminal">
             <div class="terminal-header">
               <span class="t-dot t-dot-red"></span>
